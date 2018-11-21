@@ -1,0 +1,46 @@
+一。spring介绍
+1.IOC : 反转控制
+2.AOP面向切面的编程思想
+3.作用：项目的粘合剂，总管，使项目的维护性和扩展性更好
+
+二。spring作为bean的管理容器使用步骤
+1.pom.xml加入spring的依赖
+2.在src目录下创建beans.xml配置文件
+3.将java对象加入到配置文件中注册，就是spring管理javabean对象
+<bean id="hello" class="com.bean.Hello"></bean>
+4.在代码中获取容器，拿到bean对象，运行
+// 初始化spring的容器
+		BeanFactory bf = new ClassPathXmlApplicationContext("beans.xml");
+		// 从容器中拿到javabean
+		Hello h = (Hello) bf.getBean("hello");
+		
+三。ioc反转控制。依赖注入,改变对象的依赖关系
+1.set方法的注入
+2.构造方法的注入
+
+四。注解的方式完成注入
+1.补充schema
+2.打开注解开关
+<!--          打开spring的注解开关 -->
+         <context:annotation-config></context:annotation-config>
+<!--          告诉spring到哪些包下去扫描bean对象 -->
+         <context:component-scan base-package="com"></context:component-scan>
+3.加注解
+	@comptent:表示注册为组件
+	@Repository:表示注册为DAO组件
+	@Service:表示注册为业务组件
+	@Controller:注册为控制器组件
+4.注入的注解
+	@Autowired：写在属性上，表示自动按照类型注入
+	注意：
+	a。属性的类型必须是接口
+	b。如果一个接口有多个实现类， 通过@Qualifier("db2")指定实现类
+         
+         
+         
+         
+         
+         
+         
+         
+         

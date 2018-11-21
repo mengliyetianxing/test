@@ -1,0 +1,15 @@
+一。aop编程思想
+1.面向切面，就是能够不动源码的情况下，从横切面切入新的代码功能。
+2.实现原理是动态代理
+	动态代理的步骤
+  	a。写生产厂家，实现接口，代理只能代理接口
+  	b。动态代理类实现InvocationHandler接口，实现bind方法来绑定厂家，重写invoke方法
+  	c.消费者找动态代理类来获取商品消费
+3.aop的作用：是将系统级别的重复的操作统一实现，节省代码，扩展性更好
+	例如：系统日志，系统非法访问，系统权限，系统事务
+	
+二。spring怎么实现AOP
+1.在spring的配置文件中加入aop的schema，并且打开aop的注解开关
+2.pom.xml中导入依赖spring-aop，spring-aspects
+3.写一个aop的切面类，加上注解@comptent @Aspect
+4.在切面类中写切入的方法，在放上加上注解@Before  @After @Around
