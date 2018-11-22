@@ -1,0 +1,46 @@
+1.request：请求
+常用api：
+getParameter("name"):获取页面表单单个元素的值
+getParameterValues("name"):获取一组同名表单元素，比如说复选框
+setCharacterEncoding("UTF-8"):设置字符集，要在获取参数之前执行才能解决乱码问题
+setAttribute("name","value"):在请求对象中封装一个名字叫name的值
+getAttribute("name"):从请求对象中通过name来获取参数
+
+2.response：响应对象
+作用：一般是服务器端跳转到客户端
+重定向方法：response.sendRedirect("url");
+转发：DispatchRequest dr = request.getRequestDispatcher("url");
+    dr.forward(request,response);
+重定向和转发的区别：重定向会改变跳转后的url地址，相当于两次请求，所以请求中的参数是不能往下传递的
+                                     转发不会改变跳转后的url地址，实际上是一次请求，可以将请求中的参数往下一个页面传递    
+
+3.页面之前传参数
+a。表单提交：
+b。url传参： url+?+参数名=值&参数名=值.....
+http://localhost:8080/my/my.jsp?name=admin
+以上两种都是用request.getParameter获取
+c.往request.setAttribute()保存，用getAttribute("name")来取，前提是用转发来跳转
+                                     
+4.session：会话
+作用域：是一个浏览器或者说一个客户端与服务端之间的一次通信，可以包含多次请求和响应。每个客户端的会话都是独立的。
+生命周期：浏览器发送第一个请求开始，时限已到或者浏览器关闭将消亡
+作用：是可以将数据保存在服务端，互相独立，可以保存任何数据类型。重定向也可以用session传递数据
+常用api：
+setAttribute("name","value"):在session对象中封装一个名字叫name的值
+getAttribute("name"):从session对象中通过name来获取参数
+session.setMaxInactiveInterval(arg0):设置session的有效期
+
+5.application:全局应用
+作用域：整个应用范围，所有的客户端都可以共用这个作用域
+生命周期：就是服务器的运行周期
+常用api：
+setAttribute("name","value"):在对象中封装一个名字叫name的值
+getAttribute("name"):从对象中通过name来获取参数
+
+案例：做一个统计网站登录人数的案例，登录后显示给用户看您是第几位登录我们网站的用户（显示在success页面）
+
+
+
+
+                                     
+                                     

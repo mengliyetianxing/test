@@ -1,0 +1,63 @@
+1.eclipse中tomcate镜像位置：
+D:\javaTools\eclipse\workspace\.metadata\.plugins\org.eclipse.wst.server.core\tem1
+
+2.cookie对象
+作用：是能将客户的信息保存在客户端，是以文本的形式保存，生命周期由程序决定，可以很长
+使用步骤：
+a。创建一个cookie对象  ：Cookie cook = new Cookie("key","value");
+b.可以设置cookie的有效期：cook.setMaxAge();
+c.将该cook对象添加到response对象中，发送（转发和重定向都可以）到前台页面
+d.页面发送请求到服务端会带上cookie对象，服务端可以获取里面的信息来做相应的处理
+
+课堂练习：
+1.用cookie保存用户名，在成功页面获取显示
+2.登录时课选择保存密码状态，下次访问该页面直接登录成功
+
+二。servlet
+1.是什么：java程序来处理页面请求和响应
+2.实现方式：
+	a。实现Servlet接口
+	b。继承HttpServlet类
+	
+3.步骤：
+	a.创建一个java程序实现Servlet或者继承HttpServlet类
+	b.修改web.xml文件
+		  <servlet>
+	<!--   	servlet名字，可以自定义 -->
+	  	<servlet-name>firstServlet</servlet-name>
+	<!--   	要执行的servlet程序的完整类名 -->
+	  	<servlet-class>com.servlet.FirstServlet</servlet-class>
+	  </servlet>
+	  <servlet-mapping>
+	  	<servlet-name>firstServlet</servlet-name>
+	<!--   	访问该servlet的url路径。/表示根目录开始 -->
+	  	<url-pattern>/first</url-pattern>
+	  </servlet-mapping>
+	c.访问：http://localhost:8888/hwua_web/first
+	
+4.第二种方式：继承HttpServlet，重写里面的doget和doPost方法
+方法中的参数：req对应request  resp对应response
+session的获取方式：HttpSession session = req.getSession();
+	
+5.关于web中的路径问题：在页面中访问其他资源时我们要注意包路径的结构。
+解决方案：
+	a.在页面中添加<base href="http://localhost:8888/myweb/">
+	b.网页中的基础路径都改为：http://localhost:8888/myweb/
+	c.所有项目中访问路径都（包括jsp和servlet）变成从根目录开始计算
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+	

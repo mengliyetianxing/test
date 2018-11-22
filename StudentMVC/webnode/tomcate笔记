@@ -1,0 +1,49 @@
+应用服务器：weblogic，jboss，tomcate，oc4j
+
+一。tomcate的目录结构说明：
+1.bin：存放服务器启动和关闭的命令文件。
+2.conf：存放服务器的配置信息文件
+3.lib：存放服务器自身需要的所有jar文件，也称为全局jar文件（只要部署在当前服务器中的所有项目够可以共用此文件夹中的jar）
+4.logs：存放日志信息
+5.temp：零时存放文件夹，没有具体的作用
+6.webapps：项目部署文件夹。
+7.work：服务缓存文件夹
+
+二。启动服务器
+1.要求环境变量配置了JAVA_HOME
+  CATALINA_HOME = D:\javaTools\tomcate9.0\apache-tomcat-9.0.0.M21
+2.点击：bin/startup.bat
+3.访问：打开浏览器输入网址：http://localhost:8080
+
+三。eclipse配置tomcate服务器
+1.new--server--new server--apache tomcate--tomcate9--add...--brose浏览选择comtate根目录
+
+四。手动发布动态web项目
+1.在eclipse中创建一个Dynamic web project
+2.在项目的webcontent下创建各种资源文件夹，html  jsp  css  js  img
+3.在html文件夹中创建一个html页面
+4.将该项目导出为war文件，右击项目名--exprot project--web--war file
+5.将导出的war文件复制到tomcate目录的webapps文件夹下，启动服务器
+6.访问项目：http://localhost:8080/hwua_web/html/my.html
+
+五。通过eclipse来启动tomcate
+1.是要配置server 见三
+2.选择你要运行的网页右键--run as server
+
+六。tomcate如何修改端口号
+1.conf目录下有一个server.xml的配置文件
+<Connector port="8080" protocol="HTTP/1.1"
+               connectionTimeout="20000"
+               redirectPort="8443" />
+2.如果是eclipse中要修改tomcate端口号是通过servers--tomcate9.0--server.xml来实现的
+
+通过eclipse 启动tomcat的项目部署
+在C:\Users\SuperD皓\eclipse-workspace\.metadata\.plugins\org.eclipse.wst.server.core\tmp0
+缓存目录:work文件夹
+项目文件:wtpwebapps文件夹
+
+
+
+
+
+

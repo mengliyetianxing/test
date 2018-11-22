@@ -1,0 +1,77 @@
+﻿一.什么是ajax
+1.ajax是网页局部异步刷新技术
+2.技术实现：js+后台访问。js将请求发送给后台，后台响应给前台js再刷新局部网页
+3.核心对象：XMLHttpRequest。由他来向后台发送请求
+
+二.实现步骤
+1.js发送请求部分
+var xmlhttp;
+function checkName(name) {
+	1.将name发送到后台去检查
+	构造一个xmlhttprequest请求对象
+	if (window.XMLHttpRequest){ code for IE7+, Firefox, 
+	Chrome, Opera, Safari
+	  xmlhttp=new XMLHttpRequest();
+	}else{ code for IE6, IE5
+	  xmlhttp=new ActiveXObject("Microsoft.XMLHTTP");
+	}
+	指定回调函数
+	xmlhttp.onreadystatechange=reback;
+	打开连接 指定提交方式，指定url地址  指定是否异步（true为异步 false同步）
+	js中向后台传中文参数需要转码encodeURI('张三')
+	xmlhttp.open("post","checkName?name="+encodeURI(name),true);
+	设置传参方式为表单提交
+	xmlhttp.setRequestHeader("Content-type",
+	"application/x-www-form-urlencoded");
+	发送请求
+	xmlhttp.send();
+}
+	
+2.后台servlet的响应
+		String name = req.getParameter("name");
+		List<Student> list = stuSer.getStudentByName(name);
+		PrintWriter pw = resp.getWriter();
+		if(list!=null&&list.size()>0){//重名
+			pw.write("true");
+		}else{
+			pw.write("flase");
+		}
+		pw.flush();
+		pw.close();
+		
+3.js前台获取后台的响应并且刷新网页
+function reback() {
+		xmlhttp.readyState状态是请求发送的完成状态   xmlhttp.status是页面响应正常的状态
+		if (xmlhttp.readyState==4 && xmlhttp.status==200){
+			xmlhttp.responseText获取后台输出的信息
+			if(xmlhttp.responseText=="true"){
+				document.getElementById("err").style.color="red";
+				document.getElementById("err").innerHTML="用户名已被占用";
+			}else {
+				document.getElementById("err").style.color="green";
+				document.getElementById("err").innerHTML="用户名可用";
+			}
+    	}
+	}
+	
+三.通过Jquery来调用ajax
+1.$.get();
+2.$.post();
+3.$.ajax();
+	
+四.ajax用json来绑定后台数据步骤
+前提：加入json支持jar包
+1.页面按钮绑定事件，通过jq来发送ajax请求
+2.后台servlet获取数据库数据，用Json转换格式，响应到前台
+3.前台js拿到数据，用$.each()迭代展示数据
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	

@@ -1,0 +1,14 @@
+一。文件上传
+1.导入jar文件：commons-fileupload1.3.3.jar,commons-io.2.5.jar
+2.页面：
+	<form action="upload" method="post" enctype="multipart/form-data">
+		<input type="file" name="files"><br>
+		<input type="text" name="miaoshu"><br>
+		<input type="submit" value="提交"> 
+	</form>
+	注意：form的method必须为post，form必须要有enctype="multipart/form-data"
+	    input type=“file” 必须要有name属性，名字可以自定义
+3.后台程序部分：
+4.要在项目中创建一个文件夹来存放上传后的文件，在webcontent目录下创建upload
+5.上传后的文件的路径，位于
+D:\javaTools\eclipse\workspace\.metadata\.plugins\org.eclipse.wst.server.core\tmp1\wtpwebapps\StudentManager\upload

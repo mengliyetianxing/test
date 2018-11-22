@@ -1,0 +1,33 @@
+﻿一。web监听器：监听特殊事件的发生
+1.监听实现步骤
+	a。写一个java类，实现特定的接口，重写相关方法
+	b。在web.xml中，牌配置
+	<listener>
+		<listener-class>com.listener.MyContextLisenter</listener-class>
+	</listener>
+	c.注解方式：在java类上写一个@WebLisenter
+2.可以在web.xml中可以配置servetContext初始化的参数
+	<context-param>
+		<param-name>basePath</param-name>
+		<param-value>http://localhost:8888/StudentManager/</param-value>
+	</context-param>
+	在程序中获取方式：sce.getServletContext().getInitParameter("basePath");
+
+3.三种监听：请求监听（ServletRequestListener），会话监听（HttpSessionListener），上下文监听（ServletContextListener）
+
+二。过滤器
+1、特点：在服务器中第一个被执行，可以拦截任意指定的路径请求
+2.用于项目中的非法访问，字符集设置等等
+3.实现步骤：
+	a.写一个java程序，实现Filter接口，重写方法
+	b.在web.xml中配置
+		<filter>
+			<filter-name>charfilter</filter-name>
+			<filter-class>com.filter.CharSetFilter</filter-class>
+		</filter>
+		<filter-mapping>
+			<filter-name>charfilter</filter-name>
+		<!-- 	拦截根目录下的所有请求 -->
+			<url-pattern>/*</url-pattern>
+		</filter-mapping>
+	c.dofilter方法里面的最后一句，应该将请求继续放行china.doFilter(req,resp);

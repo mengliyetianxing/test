@@ -1,0 +1,27 @@
+一。EL表达式
+1.表达式语言，用于jsp网页中获取和计算数据
+2.语法：${表达式}
+3.用于取值：可以从pageContext,request,session,application这些域中获取后台数据。顺序是从小到大
+4.指定作用域来取值：${requestScope.对象名},${sessionScope.对象名}，${applicationScope.对象名}
+5.EL表达式的开关：<%@ page isELIgnored="false" %> fasle:EL表达式有效  true：EL表达式无效
+6.EL表达式的判断：
+比较大小：> <  ==
+是否为空：${empty 对象名}  ${not empty 对象名}
+
+二。JSTL：jsp的标准标签库
+使用步骤：
+1.在项目中导入jar文件：jstl-1.2.jar,standard-1.1.2.jar
+2.在页面需要通过指令引入标签库
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+3.使用标签：
+常用标签
+<c:if test="${判断条件}">
+<c:forEach items="${集合名}" var="迭代对象别名">内容由EL表达式获取</c:forEach>
+<C:redirect src="url">重定向
+<c:out value="${}">页面输出
+<c:set var="变量名" value="${值}" scope="作用域">
+<c:remove var="变量名" scope="作用域">
+
+4.fmt标签：是用作格式化输出的标签
+引入：<%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
+<fmt:formatDate value="${ci.beginDate }" pattern="yyyy-MM-dd"/>

@@ -1,0 +1,38 @@
+一。javeEE的项目结构层次：MVC
+1.Model:模型层(DAO+业务层) 
+2.View:视图层 jsp
+3.Control:控制层 servlet
+
+二。分层的原则：
+1.层与层之间松耦合，层内保持高内聚性
+2.不跨层访问
+3.层与层之间的访问是通过接口来调用
+4.上层调用下层，不能反过来
+
+案例：下一个班级信息查询从后台一直到前台显示的完整流程
+注意：关于页面中写路径的问题：
+将页面中加入：
+<%
+	String path = request.getContextPath();
+	String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.getServerPort()+path+"/";
+%>
+<head> <base href="<%=basePath%>"/></head>这句话的作用是将当前网页中的所有连接属性加上了完整路径的前缀。
+好处：就是页面的所有路径都从根目录开始写起，包括css，js，img，action，超链接
+为了方便页面的编辑，可以将eclipse中的jsp模板修改：点击window--preference--web--jsp files--editor--templates
+在右边的列表中找到New Jsp file（html）--点击editor--修改模板--apply
+
+5.get和post的区别：
+get：超链接和url以及表单指定get方法
+post：表单提交指定post方法
+get特点：参数是明文的方式加在url后面，不安全。参数的长度在2048个字符。只能传递字符串
+post特点：参数是加密的形式加在url后面，安全。参数的长度没有限制。可以传递二进制数据
+
+
+
+
+
+
+
+
+
+
